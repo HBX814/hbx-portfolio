@@ -1,0 +1,341 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Harsh Bhati — Generative AI Engineer</title>
+  <meta name="description" content="Harsh Bhati builds Generative AI and Agentic AI systems end to end: LLM pipelines, MCP servers, multi-agent orchestration, RAG and LLM observability.">
+  <meta name="theme-color" content="#000000">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23000'/%3E%3Ctext x='4' y='23' font-family='monospace' font-size='18' fill='%233bea6a'%3E%3E_%3C/text%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;500;600;700&family=IBM+Plex+Mono:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body class="is-locked">
+
+  <!-- Boot gate: the click doubles as the user gesture that unlocks audio -->
+  <div class="boot" id="boot" role="dialog" aria-modal="true" aria-labelledby="boot-title">
+    <div class="boot__inner">
+      <pre class="boot__log" id="bootLog" aria-live="polite"></pre>
+      <h1 class="boot__title" id="boot-title" hidden>hbx@iiti:~</h1>
+      <div class="boot__actions" id="bootActions">
+        <button class="btn btn--primary" id="enterSound" type="button">Enter with sound</button>
+        <button class="btn btn--ghost" id="enterSilent" type="button">Enter silently</button>
+      </div>
+    </div>
+  </div>
+
+  <canvas class="rain" id="rain" aria-hidden="true"></canvas>
+  <div class="scanlines" aria-hidden="true"></div>
+
+  <header class="bar">
+    <a class="bar__id" href="#top">hbx<span class="bar__caret">_</span></a>
+    <nav class="bar__nav" aria-label="Sections">
+      <a href="#whoami">whoami</a>
+      <a href="#experience">experience</a>
+      <a href="#projects">projects</a>
+      <a href="#stack">stack</a>
+      <a href="#contact">contact</a>
+    </nav>
+    <button class="sound" id="soundToggle" type="button" aria-pressed="false" aria-label="Toggle background sound">
+      <span class="sound__bars" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+      <span class="sound__label">sound off</span>
+    </button>
+  </header>
+
+  <div class="progress" aria-hidden="true"><div class="progress__fill" id="progressFill"></div></div>
+
+  <main id="top">
+
+    <!-- ============ INTRO: scroll-scrubbed skull scan ============ -->
+    <section class="intro" id="intro" aria-label="Introduction">
+      <div class="intro__stage">
+        <video class="intro__video" id="skullVideo" muted playsinline preload="auto" poster="assets/skull-poster.jpg" aria-hidden="true">
+          <source src="assets/skull-scrub.mp4" type="video/mp4">
+        </video>
+        <div class="intro__vignette" aria-hidden="true"></div>
+
+        <div class="reticle" aria-hidden="true">
+          <span class="reticle__c reticle__c--tl"></span><span class="reticle__c reticle__c--tr"></span>
+          <span class="reticle__c reticle__c--bl"></span><span class="reticle__c reticle__c--br"></span>
+          <span class="reticle__line"></span>
+        </div>
+
+        <div class="intro__copy">
+          <p class="intro__prompt"><span class="g">hbx@iiti</span>:<span class="b">~</span>$ identify --subject</p>
+          <h2 class="intro__name" data-scramble>Harsh Bhati</h2>
+          <p class="intro__role">Generative AI engineer building agentic systems, MCP servers and LLM observability.</p>
+        </div>
+
+        <dl class="intro__readout" aria-label="Scan readout">
+          <div><dt>match</dt><dd id="scanPct">00.0%</dd></div>
+          <div><dt>origin</dt><dd>Indore, MP, India</dd></div>
+          <div><dt>node</dt><dd>IIT Indore · B.Tech ’27</dd></div>
+          <div><dt>status</dt><dd class="g">AI Engineer @ Bull AI</dd></div>
+        </dl>
+
+        <p class="intro__hint" aria-hidden="true">scroll to run the scan</p>
+      </div>
+    </section>
+
+    <!-- ============ Everything after the intro sits over the HUD video ============ -->
+    <div class="hud-zone" id="hudZone">
+      <div class="hud-bg" aria-hidden="true">
+        <video class="hud-bg__video" id="hudVideo" muted playsinline preload="auto" poster="assets/hacker-poster.jpg">
+          <source src="assets/hacker-scrub.mp4" type="video/mp4">
+        </video>
+        <div class="hud-bg__shade"></div>
+      </div>
+
+      <!-- whoami -->
+      <section class="sec" id="whoami">
+        <p class="cmd">$ whoami</p>
+        <h2 class="h2 h2--wide" data-scramble>I build AI systems that run in production and watch themselves.</h2>
+        <div class="sec__grid sec__grid--who">
+          <div class="who__lead">
+            <p class="lede">AI engineer with production experience building Generative AI and Agentic AI systems end to end: LLM-powered classification and summarization pipelines, Model Context Protocol (MCP) servers, multi-agent orchestration, RAG pipelines and LLM observability / drift monitoring.</p>
+            <p>Independently designed and shipped a full monitoring platform at a San Francisco based AI startup using PostgreSQL, TypeScript/Deno serverless functions, the Claude API and React. Strong foundation in Python, PyTorch, TensorFlow, prompt engineering, RAG and LLMOps, with a proven record in national-level AI/ML competitions.</p>
+          </div>
+
+          <div class="panel tilt who__card">
+            <div class="panel__head"><span>~/profile.json</span><span class="dots"><i></i><i></i><i></i></span></div>
+<pre class="json"><code>{
+  <span class="k">"name"</span>: <span class="s">"Harsh Bhati"</span>,
+  <span class="k">"role"</span>: <span class="s">"Generative AI Engineer"</span>,
+  <span class="k">"focus"</span>: [<span class="s">"Agentic AI"</span>, <span class="s">"Machine Learning"</span>],
+  <span class="k">"based_in"</span>: <span class="s">"Indore, Madhya Pradesh, India"</span>,
+  <span class="k">"now"</span>: <span class="s">"AI Engineer, Bull AI (SF, remote)"</span>,
+  <span class="k">"education"</span>: [
+    { <span class="k">"school"</span>: <span class="s">"IIT Indore"</span>, <span class="k">"degree"</span>: <span class="s">"B.Tech."</span>,
+      <span class="k">"years"</span>: <span class="s">"2023 – 2027 (expected)"</span> },
+    { <span class="k">"school"</span>: <span class="s">"CBSE, Class XII (PCM)"</span>,
+      <span class="k">"year"</span>: <span class="n">2022</span>, <span class="k">"score"</span>: <span class="s">"93.2%"</span> },
+    { <span class="k">"school"</span>: <span class="s">"CBSE, Class X"</span>,
+      <span class="k">"year"</span>: <span class="n">2020</span>, <span class="k">"score"</span>: <span class="s">"95.8%"</span> }
+  ]
+}</code></pre>
+          </div>
+        </div>
+
+        <ul class="metrics" aria-label="Results from production work">
+          <li class="metric"><b data-count="24" data-prefix="&lt;" data-suffix="h">0h</b><span>detection latency, down from a 90-day manual sweep</span></li>
+          <li class="metric"><b data-count="2" data-prefix="&lt;">0</b><span>false pages per month after prompt and routing tuning</span></li>
+          <li class="metric"><b data-count="59">0</b><span>signal entries in the Watchtower catalog schema</span></li>
+          <li class="metric"><b data-count="2" data-suffix="nd">0</b><span>place of 40+ teams, IITI Summer of Code ’24</span></li>
+        </ul>
+      </section>
+
+      <!-- experience -->
+      <section class="sec" id="experience">
+        <p class="cmd">$ cat experience.log</p>
+        <h2 class="h2" data-scramble>Where I’ve shipped</h2>
+
+        <ol class="log">
+          <li class="log__entry">
+            <div class="log__meta">
+              <span class="log__date">June 2026 – present</span>
+              <span class="log__place">San Francisco, California, USA (remote)</span>
+            </div>
+            <div class="panel log__body tilt">
+              <h3 class="h3">Bull AI <span class="role">AI Engineer</span></h3>
+              <ul class="bul">
+                <li>Designed, built and shipped <strong>Watchtower</strong> end to end as sole engineer: a production AI-engine change-detection and signal-discovery platform running <strong>four autonomous monitoring layers</strong> on a dedicated Supabase stack (PostgreSQL, pg_cron, Deno/TypeScript edge functions), cutting detection latency for AI-crawler and index policy changes from a 90-day manual sweep to under 24 hours.</li>
+                <li>Engineered an <strong>LLM classification and alerting pipeline</strong> on the <strong>Claude API</strong> that maps each detected change to catalog signal IDs, affected engines, change class and severity with a plain-English summary, then auto-routes remediation tasks over Slack, webhooks and a JSON feed; tuned prompts and routing rules to under 2 false pages per month.</li>
+                <li>Built <strong>wt-probe</strong>, a bot-emulation and canary probe harness in TypeScript/Deno that fetches URLs as each AI fetcher (verified user-agent and header emulation), captures raw-vs-rendered DOM diffs, and validates bot identity against published IP/UA registries and reverse DNS before any datapoint is recorded.</li>
+                <li>Implemented statistical <strong>drift detection</strong> with <strong>CUSUM control charts</strong> over per-bot telemetry (TTFB, byte caps, redirect hops, ETag/304, protocol support), surfacing numeric drift within 3 days of onset and categorical flips same-day without hard-coded thresholds.</li>
+                <li>Developed a <strong>Research Radar</strong> ingestion pipeline (RSS and API sources plus a weekly <strong>Claude-generated digest</strong> performing deduplication, taxonomy tagging and structured candidate extraction into a 59-entry signal catalog schema with evidence-grade flags) and a <strong>React</strong> internal triage dashboard for real-time review.</li>
+              </ul>
+            </div>
+          </li>
+
+          <li class="log__entry">
+            <div class="log__meta">
+              <span class="log__date">June 2026 – Sept 2026</span>
+              <span class="log__place">Bangalore, India (remote)</span>
+            </div>
+            <div class="panel log__body tilt">
+              <h3 class="h3">AVAP (Cognileap Eduventures LLP) <span class="role">Research Analyst, Gen AI and Blockchain</span></h3>
+              <ul class="bul">
+                <li>Selected for a live project engagement to build, debug and integrate <strong>Gen-AI and LLM-based frameworks</strong> for workflow automation, and to develop the client-side infrastructure that interacts with the applied Blockchain/Gen-AI stack.</li>
+                <li>Designed server-side architecture for scalable, secure and fault-tolerant operation of blockchain and Gen-AI services, consulted on smart contract architecture, and researched emerging tools and cryptographic techniques to harden client-side code and digital transaction data.</li>
+              </ul>
+            </div>
+          </li>
+
+          <li class="log__entry">
+            <div class="log__meta">
+              <span class="log__date">June 2025 – Aug 2025</span>
+              <span class="log__place">Remote</span>
+            </div>
+            <div class="panel log__body tilt">
+              <h3 class="h3">tochan.ai <span class="role">Machine Learning Engineer Intern</span></h3>
+              <ul class="bul">
+                <li>Built production AI agents from scratch using the <strong>Model Context Protocol (MCP)</strong> and the <strong>Agno</strong> framework, implementing tool and function calling, structured outputs, agent memory and multi-step task orchestration over external APIs.</li>
+                <li>Designed reusable MCP server-client integrations and prompt templates that let LLM agents invoke internal tools and data sources with reliable, schema-validated responses.</li>
+              </ul>
+            </div>
+          </li>
+          <li class="log__entry">
+            <div class="log__meta">
+              <span class="log__date">May 2025 – Nov 2025</span>
+              <span class="log__place">Indore, India</span>
+            </div>
+            <div class="panel log__body tilt">
+              <h3 class="h3">AgriHub, IIT Indore <span class="role">ML Research Intern, under Prof. Aruna Tiwari</span></h3>
+              <ul class="bul">
+                <li>Fine-tuned an <strong>LSTM</strong> time-series model on the Central Ground Water Board (CGWB) dataset to forecast groundwater levels across Indore and Madhya Pradesh; owned data cleaning, feature engineering, sequence windowing and hyperparameter tuning in <strong>TensorFlow</strong>.</li>
+              </ul>
+            </div>
+          </li>
+
+        </ol>
+      </section>
+
+      <!-- projects -->
+      <section class="sec" id="projects">
+        <p class="cmd">$ ls ./projects</p>
+        <h2 class="h2" data-scramble>Things I built to see if they’d work</h2>
+
+        <div class="deck">
+          <article class="proj panel tilt">
+            <header class="proj__head">
+              <p class="proj__file">operaiq/ <span>2026</span></p>
+              <h3 class="h3">OperaIQ</h3>
+              <p class="proj__sub">AI-powered production intelligence platform · multi-agent SRE incident response</p>
+            </header>
+            <ul class="bul">
+              <li>Built a multi-agent incident-response platform on the <strong>Google ADK (Agent Development Kit)</strong> where a Coordinator routes to specialist Triage, Remediation and Post-Mortem agents that call incident-timeline, metrics and runbook tools in parallel to assemble a structured triage report, removing the first 5–15 minutes of manual context-gathering during an incident.</li>
+              <li>Implemented a <strong>FastMCP</strong> tool and resource surface over JSON-RPC and Streamable HTTP, exposing composable tools for metric queries, runbook search, rollback triggers, alert silencing and post-mortem drafting, secured with OAuth token validation, 60 req/min rate limiting and BigQuery audit logging.</li>
+              <li>Added semantic runbook retrieval (<strong>RAG</strong>) over <strong>ChromaDB</strong> embeddings, operator-gated human-in-the-loop approval on every state-changing action, and Gemini-generated post-mortem drafts auto-scored against a 5-point quality rubric; shipped a live <strong>Next.js</strong> dashboard with SSE/WebSocket streaming of agent thoughts and tool calls.</li>
+            </ul>
+            <p class="tags">Python · Google ADK · FastMCP · FastAPI · Gemini · ChromaDB · RAG · BigQuery · Pub/Sub · Firestore · Cloud Run (GCP) · Next.js 15 · TypeScript · SSE · WebSockets</p>
+            <a class="proj__link" href="https://github.com/HBX814/operaiq" target="_blank" rel="noopener">github.com/HBX814/operaiq</a>
+          </article>
+
+          <article class="proj panel tilt">
+            <header class="proj__head">
+              <p class="proj__file">hbx/ <span>2026</span></p>
+              <h3 class="h3">HBX Agent</h3>
+              <p class="proj__sub">Agentic analytics automation platform · multi-agent enterprise workflow automation</p>
+            </header>
+            <ul class="bul">
+              <li>Built a full-stack multi-agent platform in which a <strong>Master Orchestrator</strong> classifies user intent and routes to specialist agents (Product Analyst, Data Engineer, Insight Narrator) acting through MCP-style tool integrations (Notion, GitHub, Jira, Slack, Snowflake, Airflow) behind a strict <strong>human-in-the-loop approval gate</strong>.</li>
+              <li>Streamed fine-grained agent reasoning to the client over <strong>Server-Sent Events</strong>, emitting discrete agent-thought, tool-call, token and pending-action events, and built a pending-actions queue where agents draft real GitHub pull requests, Jira tickets, Notion updates and Slack posts for operator approval instead of executing destructive actions autonomously.</li>
+              <li>Engineered <strong>ChromaDB</strong> semantic memory that indexes every resolved run as a QA pair and injects historical context into the LLM prompt to prevent drift, plus APScheduler cron jobs generating weekly cross-team insight digests; validated with a 24/24 passing integration suite.</li>
+            </ul>
+            <p class="tags">Python · FastAPI · Groq (Llama 3.3 70B) · ChromaDB · MongoDB (Motor) · Pydantic · APScheduler · JWT · React 19 · Recharts · Tailwind CSS · SSE</p>
+            <a class="proj__link" href="https://github.com/HBX814/HBX" target="_blank" rel="noopener">github.com/HBX814/HBX</a>
+          </article>
+
+          <article class="proj panel tilt">
+            <header class="proj__head">
+              <p class="proj__file">drift-detector/ <span>June 2025</span></p>
+              <h3 class="h3">Drift Detector</h3>
+              <p class="proj__sub">LLM observability MCP server · Hugging Face Agents-MCP-Hackathon</p>
+            </header>
+            <ul class="bul">
+              <li>Built a low-level <strong>MCP server</strong> (MCP Python SDK) that detects <strong>LLM performance drift</strong> over time using MCP’s <strong>sampling</strong> capability, exposing <code>run_initial_diagnostics</code> and <code>check_drift</code> tools that auto-generate a capability-tailored questionnaire, baseline the model at a fixed temperature, then re-sample identically for differential comparison.</li>
+              <li>Implemented drift scoring with threshold-based alerting (score above 50), <strong>SQLite</strong> persistence of models, baselines and drift history, and a <strong>Gradio</strong> dashboard with interactive trend charts; validated end to end against a <strong>fast-agent</strong> MCP client.</li>
+            </ul>
+            <p class="tags">Python · MCP Python SDK · fast-agent · LLM Sampling · SQLite · Gradio · JSON</p>
+            <a class="proj__link" href="https://github.com/HBX814/drift-detector" target="_blank" rel="noopener">github.com/HBX814/drift-detector</a>
+          </article>
+
+          <article class="proj panel tilt">
+            <header class="proj__head">
+              <p class="proj__file">virtual-makeup-try-on/ <span>Summer 2024</span></p>
+              <h3 class="h3">Virtual Makeup Try-On</h3>
+              <p class="proj__sub">Generative AI (GAN) · IITI Summer of Code ’24 (AI/ML Division), 2nd place out of 40+ teams</p>
+            </header>
+            <ul class="bul">
+              <li>Developed a real-time virtual makeup application using <strong>BeautyGAN</strong> (generator-discriminator makeup style transfer) with <strong>MediaPipe Face Mesh</strong> and <strong>Dlib</strong> landmark detection to align and blend makeup onto detected facial regions; shipped a <strong>Streamlit</strong> app supporting webcam and photo upload with instant before/after visualization.</li>
+            </ul>
+            <p class="tags">Python · TensorFlow · BeautyGAN · OpenCV · MediaPipe Face Mesh · Dlib · Streamlit</p>
+            <a class="proj__link" href="https://github.com/HBX814/Virtual-Makeup-Try-on" target="_blank" rel="noopener">github.com/HBX814/Virtual-Makeup-Try-on</a>
+          </article>
+        </div>
+      </section>
+
+      <!-- stack -->
+      <section class="sec" id="stack">
+        <p class="cmd">$ tree ./stack</p>
+        <h2 class="h2" data-scramble>The toolkit</h2>
+
+        <div class="sec__grid sec__grid--stack">
+          <div class="sphere-wrap">
+            <div class="sphere" id="sphere" aria-hidden="true"></div>
+            <p class="sphere__hint">drag to rotate</p>
+          </div>
+
+          <div class="stack">
+            <div class="stack__group">
+              <h3 class="stack__title">Programming languages</h3>
+              <p>Python, C++ (DSA), TypeScript, JavaScript, SQL, Bash, HTML, CSS</p>
+            </div>
+            <div class="stack__group">
+              <h3 class="stack__title">Generative AI and LLMs</h3>
+              <p>Large Language Models (Claude, GPT, Gemini, Llama 3.3, Groq), Prompt Engineering, Retrieval-Augmented Generation (RAG), Semantic Search, Fine-Tuning (LoRA, QLoRA, PEFT), Embeddings, Function and Tool Calling, Structured Outputs, Guardrails, LLM Evaluation, Generative Adversarial Networks (GANs)</p>
+            </div>
+            <div class="stack__group">
+              <h3 class="stack__title">Agentic AI</h3>
+              <p>Model Context Protocol (MCP), FastMCP, Google ADK (Agent Development Kit), Agno, fast-agent, LangChain, LangGraph, CrewAI, Multi-Agent Orchestration, Agent Routing and Coordinator Patterns, Agent Memory and Planning, Tool Use, Human-in-the-Loop Approval Gates</p>
+            </div>
+            <div class="stack__group">
+              <h3 class="stack__title">ML and deep learning</h3>
+              <p>PyTorch, TensorFlow, Keras, Scikit-learn, Hugging Face Transformers, Transformers, LSTM and RNN, CNNs, Supervised and Unsupervised Learning, Time-Series Forecasting, OpenCV, MediaPipe</p>
+            </div>
+            <div class="stack__group">
+              <h3 class="stack__title">LLMOps and data</h3>
+              <p>LLM Observability, Model Drift Detection, CUSUM Control Charts, Audit Logging, MLflow, LangSmith, Vector Databases (ChromaDB, FAISS, pgvector), PostgreSQL, Supabase, MongoDB, SQLite, BigQuery, Pandas, NumPy, Data Analysis</p>
+            </div>
+            <div class="stack__group">
+              <h3 class="stack__title">Backend, cloud and tools</h3>
+              <p>FastAPI, Flask, Node.js, Express.js, Deno, Pydantic, REST APIs, JSON-RPC, Webhooks, SSE, WebSockets, JWT Auth, React.js, Next.js, Streamlit, Gradio, Google Cloud Platform (Cloud Run, Pub/Sub, Firestore), Docker, Git, GitHub, CI/CD, Linux</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- contact -->
+      <section class="sec sec--contact" id="contact">
+        <p class="cmd cmd--alert">$ ./open-channel --to harsh</p>
+        <h2 class="h2 h2--alert" data-scramble>Let’s build something that ships.</h2>
+        <p class="lede">Open to AI engineering roles, agentic systems work and research collaborations. Email is fastest.</p>
+
+        <div class="sec__grid sec__grid--contact">
+          <ul class="channels">
+            <li><span>email</span><a href="mailto:harshbhati814@gmail.com">harshbhati814@gmail.com</a></li>
+            <li><span>academic</span><a href="mailto:mems230005017@iiti.ac.in">mems230005017@iiti.ac.in</a></li>
+            <li><span>phone</span><a href="tel:+919351270751">+91 93512 70751</a></li>
+            <li><span>linkedin</span><a href="https://linkedin.com/in/harsh-bhati-451a6930a" target="_blank" rel="noopener">linkedin.com/in/harsh-bhati-451a6930a</a></li>
+            <li><span>github</span><a href="https://github.com/HBX814" target="_blank" rel="noopener">github.com/HBX814</a></li>
+            <li><span>location</span><span class="plain">Indore, Madhya Pradesh, India</span></li>
+          </ul>
+
+          <div class="term panel" id="term">
+            <div class="panel__head"><span>guest@hbx:~</span><span class="dots"><i></i><i></i><i></i></span></div>
+            <div class="term__out" id="termOut" aria-live="polite"></div>
+            <form class="term__form" id="termForm" autocomplete="off">
+              <label for="termIn" class="term__ps">guest@hbx:~$</label>
+              <input id="termIn" class="term__in" type="text" spellcheck="false" autocapitalize="off" placeholder="type help">
+            </form>
+          </div>
+        </div>
+
+        <footer class="foot">
+          <p>© 2026 Harsh Bhati. Built by hand, no templates.</p>
+          <a href="#top">Back to top</a>
+        </footer>
+      </section>
+    </div>
+  </main>
+
+  <audio id="bgm" src="PortfolioSound.mp3" loop preload="auto"></audio>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js"></script>
+  <script src="main.js"></script>
+</body>
+</html>
